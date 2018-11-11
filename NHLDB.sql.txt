@@ -1,0 +1,320 @@
+CREATE TABLE "COMMISSIONER"
+(   "E_ID" NUMBER(8,0) NOT NULL ENABLE,   
+"F_NAME" VARCHAR2(15),   
+"L_NAME" VARCHAR2(15),   
+"DOB" DATE,   
+"SALARY" NUMBER(8,0),   
+CONSTRAINT "COMMISSIONER_PK" PRIMARY KEY ("E_ID")  
+USING INDEX ENABLE  )  /  
+ 
+CREATE TABLE "MANAGEMENT"   
+( "M_ID" NUMBER(10,0),   
+"F_NAME" VARCHAR2(20),   
+"L_NAME" VARCHAR2(20),   
+"SALARY" NUMBER(10,0),   
+"YEARS_WITH_TEAM" NUMBER(10,0),   
+CONSTRAINT "MANAGEMENT_PK" PRIMARY KEY ("M_ID")  
+USING INDEX ENABLE  )  /    
+
+CREATE TABLE  "COACH" (   
+"RECORD" NUMBER(8,0) NOT NULL ENABLE,   
+"YEARS_WITH_TEAM" NUMBER(8,0) NOT NULL ENABLE,   
+"DOB" DATE NOT NULL ENABLE,   
+"RECORD_WITH_TEAM" NUMBER(8,0) NOT NULL ENABLE,   
+"L_NAME" VARCHAR2(20) NOT NULL ENABLE,   
+"F_NAME" VARCHAR2(20) NOT NULL ENABLE,   
+"SALARY" NUMBER(8,0) NOT NULL ENABLE,   
+"C_ID" NUMBER(8,0) NOT NULL ENABLE,   
+"T_ID" NUMBER(8,0),    
+CONSTRAINT "COACH_PK" PRIMARY KEY ("C_ID")    
+USING INDEX  ENABLE     )  /      
+
+ 
+CREATE TABLE  "STAFF"    (  
+"S_ID" VARCHAR2(8) NOT NULL ENABLE,   
+"F_NAME" VARCHAR2(20) NOT NULL ENABLE,   
+"L_NAME" VARCHAR2(20) NOT NULL ENABLE,    
+CONSTRAINT "STAFF_PK" PRIMARY KEY ("S_ID")    
+USING INDEX  ENABLE     )  /    
+
+CREATE TABLE "MEDICAL_STAFF" (   
+"S_ID" VARCHAR2(8) NOT NULL ENABLE,   
+"T_ID" VARCHAR2(8) NOT NULL ENABLE,   
+"F_NAME" VARCHAR2(20) NOT NULL ENABLE,   
+"L_NAME" VARCHAR2(20) NOT NULL ENABLE,   
+"MEDICAL_FIELD" VARCHAR2(30) NOT NULL ENABLE,   
+"YRS_EXPERIENCE" NUMBER(10,0) NOT NULL ENABLE,   
+"SALARY" NUMBER(10,0) NOT NULL ENABLE,   
+CONSTRAINT "MEDICAL_STAFF_PK" PRIMARY KEY ("S_ID")     
+USING INDEX ENABLE   )  /    
+
+CREATE TABLE "EQUIPMENT_STAFF" (   
+"S_ID" VARCHAR2(8) NOT NULL ENABLE,   
+"T_ID" VARCHAR2(8) NOT NULL ENABLE,   
+"F_NAME" VARCHAR2(20) NOT NULL ENABLE,   
+"L_NAME" VARCHAR2(20) NOT NULL ENABLE,   
+"SALARY" NUMBER(8,0) NOT NULL ENABLE,   
+CONSTRAINT "EQUIPMENT_STAFF_PK" PRIMARY KEY ("S_ID")     
+USING INDEX ENABLE   )  /    
+
+CREATE TABLE  "PLAYERS" (  
+"P_ID" NUMBER(8,0) NOT NULL ENABLE,  
+"F_NAME" VARCHAR2(20),   
+"L_NAME" VARCHAR2(20),  
+"POSITION" VARCHAR2(10),  
+"STATUS" VARCHAR2(6),   
+CONSTRAINT "PLAYERS_PK" PRIMARY KEY ("P_ID")   
+USING INDEX  ENABLE    ) /    
+
+ 
+CREATE TABLE "ACTIVEPLAYER"  ( 
+"P_ID" NUMBER(10,0),   
+"T_ID" NUMBER(10,0),   
+"GPG" NUMBER(10,0),   
+"AGG" NUMBER(10,0),   
+"JERSEY_NUMBER" NUMBER(10,0),   
+"SALARY" NUMBER(10,0),   
+"SAVES" NUMBER(10,0),   
+CONSTRAINT "ACTIVEPLAYER_PK" PRIMARY KEY ("P_ID")  
+USING INDEX ENABLE  )  /    
+
+ALTER TABLE "ACTIVEPLAYER" ADD CONSTRAINT "ACTIVEPLAYER_FK" FOREIGN KEY 
+("P_ID")  
+REFERENCES "PLAYERS" ("P_ID") ENABLE  /    
+
+CREATE TABLE "INJUREDPLAYER"  (   
+"STATUS" VARCHAR2(20),   
+"TIME_TILL_RECOVERY" VARCHAR2(20),   
+"INJURY_TYPE" VARCHAR2(20),   
+"P_ID" NUMBER(8,0) NOT NULL ENABLE,   
+CONSTRAINT "INJUREDPLAYER_PK" PRIMARY KEY ("STATUS")  
+USING INDEX ENABLE  )  /  
+ 
+ALTER TABLE "INJUREDPLAYER" ADD CONSTRAINT "INJUREDPLAYER_CON" FOREIGN KEY ("P_ID")  
+REFERENCES "PLAYERS" ("P_ID") ENABLE  /    
+
+CREATE TABLE  "TEAMS"    (   
+"T_ID" NUMBER NOT NULL ENABLE,  
+"CITY" VARCHAR2(3),   
+"MASCOT" VARCHAR2(15),  
+"RECORD" CHAR(6),  
+"NAME" VARCHAR2(20),   
+"STADIUM" VARCHAR2(20),   
+CONSTRAINT "TEAMS_PK" PRIMARY KEY ("T_ID")  
+USING INDEX  ENABLE    ) /    
+ 
+ 
+ 
+CREATE TABLE  "GAMES"    (  
+"G_ID" NUMBER(8,0) NOT NULL ENABLE,  
+"CITY" VARCHAR2(3),   
+"GAME_DATE" DATE,   
+"STADIUM" VARCHAR2(20),   
+CONSTRAINT "GAMES_PK" PRIMARY KEY ("G_ID")   
+USING INDEX  ENABLE    ) /    
+
+CREATE TABLE "SEASON_GAMES" (   
+"G_ID" NUMBER(8,0) NOT NULL ENABLE,   
+"T_ID" NUMBER(1,8) NOT NULL ENABLE,   
+CONSTRAINT "GAMES_PK" PRIMARY KEY ("G_ID")  
+USING INDEX ENABLE  )  /    
+
+ALTER TABLE "SEASON_GAMES"   ADD CONSTRAINT "GAMES_CON" 
+FOREIGN KEY ("T_ID") 
+REFERENCES "TEAMS" ("T_ID") ENABLE   /                   
+ 
+ 
+Insert into Commissioner (E_ID, F_Name, L_Name, Start_Date, Salary)  VALUES('6', 'Gary', 'Bettman', '02/01/1993', '9600000'); 
+   
+Insert into Management (M_ID, F_Name, L_Name, Salary, Years_With_Team)  VALUES('4', 'Robin', 'Ballston', '123876', '4');  
+Insert into Management (M_ID, F_Name, L_Name, Salary, Years_With_Team)  VALUES('3', 'Jimbo', 'Loggins', '234888', '11');  
+Insert into Management (M_ID, F_Name, L_Name, Salary, Years_With_Team)  VALUES('7', 'Sally', 'jenkins', '234000', '1');  
+Insert into Management (M_ID, F_Name, L_Name, Salary, Years_With_Team)  VALUES('1', 'Bob', 'Smithers', '2340000', '4');  
+Insert into Management (M_ID, F_Name, L_Name, Salary, Years_With_Team)  VALUES('2', 'Bill', 'Winston', '300000', '7');  
+Insert into Management (M_ID, F_Name, L_Name, Salary, Years_With_Team)  VALUES('5', 'Ringo', 'Starr', '128000', '2');  
+Insert into Management (M_ID, F_Name, L_Name, Salary, Years_With_Team)  VALUES('6', 'Crisp', 'Calloway', '230000', '7');  
+Insert into Management (M_ID, F_Name, L_Name, Salary, Years_With_Team)  VALUES('9', 'Wayne', 'Gretzky', '400000', '7');    
+
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)  
+VALUES('0001', '454-308','2','363-230','Carlyle','Randy','3000000','1054');  
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)   
+VALUES('0002', '82-110','1','29-41','Tocchet','Rick','625000','1037');  
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)   
+VALUES('0003', '115-75','1','68-28','Cassidy','Bruce','625000','9994');  
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)  
+VALUES('0004', '65-86','1','65-86','Bednar','Jared','650000','1024');  
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)   
+VALUES('0005', '503-243','2','94-51','Boudreau','Bruce','2500000','1064');  
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)  
+VALUES('0006', '25-45','1','25-45','Housley','Phil','1000000','1114');  
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)  
+VALUES('0007', '884-526','10','782-446','Quenville','Joel','6000000','1094');  
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)   
+VALUES('0008', '575-462','3','129-87','Tortorella','John','1500000','1084');  
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)  
+VALUES('0009', '1103-583','2','117-119','Julien','Claude','5000000','1034');  
+Insert into Coach (C_ID, Record, Years_With_Team, Record_With_Team, L_Name, F_Name, Salary, T_ID)  
+VALUES('0010', '762-568','3','205-89','Trotz','Barry','1500000','1185');      
+
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0001', 'Waylon', 'Dalton');  
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0004', 'Eddie', 'Randolph');  
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0005', 'Lia', 'Shelton');  
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0007', 'Jonathan', 'Sheppard');  
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0009', 'Ray', 'Woodward');  
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0002', 'Justine', 'Henderson');  
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0003', 'Marcus', 'Cruz');  
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0006', 'Angela', 'Walker');  
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0008', 'Shea', 'Washington');  
+Insert into Staff (S_ID, F_Name, L_Name)  
+VALUES('0010', 'Christina', 'Frazier');    
+
+Insert into Medical_Staff  (S_ID, T_ID, F_Name, L_Name, Medical_Field, Yrs_Experience, Salary)  
+VALUES(0001, 1094, 'Waylon', 'Dalton', 'Radiology', 14, 150000);  
+Insert into Medical_Staff  (S_ID, T_ID, F_Name, L_Name, Medical_Field, Yrs_Experience, Salary)  
+VALUES(0005, 1034, 'Lia', Shelton', 'Orthopaedic Surgery', 14, 400000);  
+Insert into Medical_Staff  (S_ID, T_ID, F_Name, L_Name, Medical_Field, Yrs_Experience, Salary)  
+VALUES(0009, 1037, 'Ray', 'Woodward', 'Oral Surgeon', 10, 350000);  
+Insert into Medical_Staff  (S_ID, T_ID, F_Name, L_Name, Medical_Field, Yrs_Experience, Salary)  
+VALUES(0003, 9994, 'Marcus', 'Cruz' 'Physical Therapy', 11, 120000);  
+Insert into Medical_Staff  (S_ID, T_ID, F_Name, L_Name, Medical_Field, Yrs_Experience, Salary)  
+VALUES(0008, 1185, 'Shea', 'Washington' 'Neurology', 9, 315,000);    
+
+ 
+Insert into Equipment Staff  (S_ID, T_ID, F_Name, L_Name, Salary)  
+VALUES(0002, 1084, 'Justine', 'Henderson', '43500');  
+Insert into Equipment_Staff  (S_ID, T_ID, F_Name, L_Name, Salary)  
+VALUES(0006, 1054, 'Angela', 'Walker' 47000);  
+Insert into Equipment_Staff  (S_ID, T_ID, F_Name, L_Name, Salary)  
+VALUES(0004, 1185, 'Eddie', 'Randolph', 45000);  
+Insert into Equipment_Staff  (S_ID, T_ID, F_Name, L_Name, Salary)  
+VALUES(0007, 1114, 'Jonathan', 'Sheppard', 50000);  
+Insert into Equipment_Staff  (S_ID, T_ID, F_Name, L_Name, Salary)  
+VALUES(0010, 1024, 'Christina', 'Frazier', 52500);    
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)  
+VALUES('1082', 'Sidney', 'Crosby', 'Forward', 'Clear');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)   
+VALUES('1088', 'Carey', 'Price', 'Goaltender', 'Clear');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)  
+VALUES('1079', 'Drew', 'Doughty', 'Defensemen', 'Clear');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)   
+VALUES('1069', 'P.K.', 'Subban', 'Defensemen', 'Clear');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)  
+VALUES('1053', 'Tyler', 'Seguin', 'Forward', 'Clear');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)   
+VALUES('1146', 'Anders', 'Bjork', 'Forward', 'Injured');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)   
+VALUES('1019', 'Travis', 'Boyd', 'Forward', 'Injured');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)  
+VALUES('1789', 'Carl', 'Hagelin', 'Forward', 'Injured');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)  
+VALUES('1030', 'Alex', 'Ovechkin', 'Forward', 'Clear');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)  
+VALUES('1027', 'Jonathan', 'Towes', 'Forward', 'Clear');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)  
+VALUES('1931', 'Evgeni', 'Malkin', 'Forward', 'Injured');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)   
+VALUES('1056', 'Andre', 'Burakovsky', 'Forward', 'Clear');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)   
+VALUES('1065', 'John', 'Taveres', 'Forward', 'Clear');  
+Insert into PLAYERS (P_ID, F_Name, L_Name, Position, Status)   
+VALUES('1075', 'Steven', 'Stamkos', 'Forward', 'Clear');    
+
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES(1027, 1064, 2, 1, 19, 3950000, 0);  
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES(1065, 1114, 1, 1, 7, 9750000, 0); 
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES(1053, 1084, 1, 0, 57, 875000, 0);  
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES(1019, 1084, 1, 0, 17, 2565000, 0);  
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES(1082, 1114, 1, 0, 45, 3500500);  
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES('1088', '1037', 0, 0, 10, 1275000, 4);  
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES(1079, 1037, 0, 0, 14, 227000, 2);  
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES(1069, 9944, 0, 0, 28, 3000000, 3);  
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES(1030, 1185, 3, 1, 8, 1000000, 0);  
+Insert into ACTIVEPLAYER (P_ID, T_ID, GPG, AGG, Jersey_Number, Salary, Saves)  
+VALUES(1056, 1024, 1, 0, 54, 1250000, 0);      
+
+Insert into INJUREDPLAYERS (STATUS, TIME_TILL_RECOVERY, INJURY_TYPE, P_ID)  
+VALUES('Injured', '3 Games', 'Shoulder Surgery', 1146);      
+
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)  
+VALUES('1094', 'CHI', 'Tommy Hawk', '50-23', 'Blackhawks', 'United States');  
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)  
+VALUES('1034', 'MTL', 'Youppi', '47-26', 'Montreal Canadiens', 'Bell Center');  
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)  
+VALUES('1037', 'EDM', 'Hunter', '47-26', 'Edmonton Oilers', 'Rogers Place');  
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)   
+VALUES('9944', 'STL', 'Louie', '46-29', 'St. Louis Blues', 'Scottrade Center');  
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)  
+VALUES('1185', 'WDC', 'Slapshot', '55-19', 'Washington Capitals', 'Verizon Center');  
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)   
+VALUES('1114', 'PGH', 'Iceburgh', '50-21', 'Pittsburgh Penguins', 'PPG Arena');  
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)  
+VALUES('1084', 'COL', 'Stinger', '50-24', 'Blue Jackets', 'Nationwide Arena');  
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)  
+VALUES('1054', 'ANA', 'wild Wing', '46-23', 'Anaheim Ducks', 'Xcel Energy Center');  
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)   
+VALUES('1064', 'MN', 'Nordy', '49-25', 'Minnesota Wild', 'Honda Center');  
+Insert into TEAMS (T_ID, City, Mascot, Record, Name, Stadium)   
+VALUES('1024', 'NY', 'N/A', '48-28', 'New York Rangers', 'Madison Square Garden');        
+ 
+ 
+Insert into Games (G_ID, City, Game_Date, Stadium)  
+VALUES('1025', 'Washington D.C.', '04/26/2018', 'Capital One Arena');  
+Insert into Games (G_ID, City, Game_Date, Stadium)   
+VALUES('1015', 'Washington D.C.', '04/15/2018', 'Capital One Arena');  
+Insert into Games (G_ID, City, Game_Date, Stadium)  
+VALUES('2085', 'Edmonton', '02/26/2018', 'Bell Center');  
+Insert into Games (G_ID, City, Game_Date, Stadium)  
+VALUES('1071', 'Montreal', '02/25/2018', 'Rogers Place');  
+Insert into Games (G_ID, City, Game_Date, Stadium)  
+VALUES('1094', 'Pittsburgh', '03/21/2018', 'PPG Paints Arena');  
+Insert into Games (G_ID, City, Game_Date, Stadium)  
+VALUES('2014', 'Saint Louis', '02/03/2018', 'Scottstrade Center');  
+Insert into Games (G_ID, City, Game_Date, Stadium)  
+VALUES('2052', 'Colorado', '04/15/2018', 'Rogers Place');  
+Insert into Games (G_ID, City, Game_Date, Stadium)  
+VALUES('1022', 'Philadelphia', '04/22/2018', 'Wells Fargo Center');  
+Insert into Games (G_ID, City, Game_Date, Stadium)  
+VALUES('2019', 'Anaheim', '04/26/2018', 'Capital One Arena');  
+Insert into Games (G_ID, City, Game_Date, Stadium)  
+VALUES('1056', 'New York', '04/01/2018', 'Madison Square G');    
+
+Insert into Season_Games (G_ID, T_ID)  
+VALUES (1025, 1094);  
+Insert into Season_Games (G_ID, T_ID)  
+VALUES (1015, 1034);  
+Insert into Season_Games (G_ID, T_ID)  
+VALUES (1094, 1084);  
+Insert into Season_Games (G_ID, T_ID)  
+VALUES (2014, 1185);  
+Insert into Season_Games (G_ID, T_ID)  
+VALUES (2085, 9944);  
+Insert into Season_Games (G_ID, T_ID)  
+VALUES (2052, 1084);  
+Insert into Season_Games (G_ID, T_ID)  
+VALUES (1071, 1185);    
+
+Insert into PLAYOFFGAME (PG_ID, T_ID)  
+VALUES (1000, 1185);  
+Insert into PLAYOFFGAME (PG_ID, T_ID)  
+VALUES (1001, 1114);  
+Insert into PLAYOFFGAME (PG_ID, T_ID)  
+VALUES (1003, 1185);  
+Insert into PLAYOFFGAME (PG_ID, T_ID)  
+VALUES (1002, 1185);   
